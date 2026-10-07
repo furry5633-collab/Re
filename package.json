@@ -1,0 +1,21 @@
+{
+  "name": "rezero-multijugador",
+  "version": "1.0.0",
+  "description": "Juego de rol multijugador por turnos inspirado en Re:Zero (fan game). Regreso por la muerte, partidas con código y narrador con IA.",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "node tests/flow.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "express": "^4.22.3",
+    "socket.io": "^4.8.4"
+  },
+  "devDependencies": {
+    "socket.io-client": "^4.8.4"
+  }
+}

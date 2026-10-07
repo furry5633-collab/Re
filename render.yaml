@@ -1,0 +1,29 @@
+# Blueprint de Render: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: rezero-multijugador
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: TURN_SECONDS
+        value: "120"
+      # Narrador con IA (opcional). Si no pones la clave, el juego usa el narrador local.
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_BASE_URL
+        value: https://api.openai.com/v1
+      - key: LLM_MODEL
+        value: gpt-4o-mini
+      # Para que las partidas NO se borren al reiniciar, usa un disco persistente
+      # (requiere plan de pago en Render). Quita el "#" de estas líneas y de DATA_DIR:
+      # - key: DATA_DIR
+      #   value: /var/data
+      # disk:
+      #   name: rezero-datos
+      #   mountPath: /var/data
+      #   sizeGB: 1

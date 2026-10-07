@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Re:Zero · Multijugador</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div id="banner" class="banner hidden">Conexión perdida. Reconectando…</div>
+  <div id="fx" class="fx hidden"><div class="fx-box"><div class="fx-title">⟳ Regreso por la muerte</div><div id="fx-text"></div></div></div>
+
+  <!-- MENÚ -->
+  <main id="screen-menu" class="screen">
+    <header class="hero">
+      <h1>Re:Zero <span>· Multijugador</span></h1>
+      <p class="sub">Un parpadeo, otro mundo. Decidid juntos, y que el destino decida lo demás.</p>
+      <p id="ai-badge" class="badge"></p>
+    </header>
+
+    <section class="card">
+      <h2>Tu personaje</h2>
+      <label class="field">Nombre
+        <input id="name" maxlength="20" placeholder="Ej.: Subaru" />
+      </label>
+      <div class="field">Apariencia</div>
+      <div id="skins-menu" class="skins"></div>
+    </section>
+
+    <section class="grid2">
+      <div class="card">
+        <h2>Nueva partida</h2>
+        <p class="muted">Crea una partida y comparte el código con tus amigos (máx. 3 jugadores).</p>
+        <button id="btn-create" class="btn primary">Crear partida</button>
+      </div>
+      <div class="card">
+        <h2>Unirse con código</h2>
+        <div class="row">
+          <input id="join-code" maxlength="8" placeholder="CÓDIGO" class="code-input" />
+          <button id="btn-join" class="btn">Entrar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Mis partidas</h2>
+      <p class="muted">Partidas en las que has jugado desde este navegador. Puedes volver cuando quieras.</p>
+      <div id="my-games" class="list"></div>
+    </section>
+  </main>
+
+  <!-- JUEGO -->
+  <main id="screen-game" class="screen hidden">
+    <div class="topbar">
+      <div>
+        <strong>Partida</strong> <span id="g-code" class="code"></span>
+        <button id="btn-copy" class="btn small">Copiar invitación</button>
+      </div>
+      <div class="top-right">
+        <span id="g-turn" class="muted"></span>
+        <span id="g-timer" class="timer"></span>
+        <button id="btn-leave" class="btn small ghost">Salir</button>
+      </div>
+    </div>
+
+    <div class="layout">
+      <section class="main-col">
+        <!-- Lobby -->
+        <div id="lobby" class="card hidden">
+          <h2>Esperando a los forasteros</h2>
+          <p>Comparte el código <strong id="lobby-code" class="code big"></strong> con tus amigos. Podéis empezar aunque solo estéis vosotros dos.</p>
+          <button id="btn-start" class="btn primary">Empezar la historia</button>
+          <p id="lobby-hint" class="muted"></p>
+        </div>
+
+        <!-- Escena -->
+        <div id="scene-wrap" class="card scene hidden">
+          <div id="scene-location" class="location"></div>
+          <div id="scene-text" class="narration"></div>
+          <div id="writing" class="writing hidden">✍️ La historia se está escribiendo…</div>
+          <div id="options" class="options"></div>
+          <p id="waiting" class="muted"></p>
+        </div>
+
+        <!-- Recap de lo perdido -->
+        <div id="recap" class="card recap hidden">
+          <div class="row between">
+            <h3>Lo que te perdiste</h3>
+            <button id="btn-recap-close" class="btn small ghost">Cerrar</button>
+          </div>
+          <div id="recap-body"></div>
+        </div>
+
+        <h3 class="section-title">Crónica</h3>
+        <div id="log" class="log-list"></div>
+      </section>
+
+      <aside class="side-col">
+        <div class="card">
+          <h3>Personajes</h3>
+          <div id="players" class="players"></div>
+        </div>
+        <div class="card">
+          <h3>Tus recuerdos</h3>
+          <div id="memories" class="muted small-text">Aún no has muerto. Qué suerte.</div>
+        </div>
+        <div class="card">
+          <h3>Tu apariencia</h3>
+          <div id="skins-game" class="skins small"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
